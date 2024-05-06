@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {useAuth} from './contexts/AuthContext'
+import Header from './components/Header'
 
-function App() {
+export default function App() {
+  const {isLoggedIn} = useAuth()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Header />
+
+      {isLoggedIn ? <LoggedInText /> : <LoggedOutText />}
     </div>
-  );
+  )
 }
 
-export default App;
+const LoggedInText = () => {
+  const {account} = useAuth()
+
+  return <p>Hey, {account.username}! I'm happy to let you know: you are authenticated!</p>
+}
+
+const LoggedOutText = () => (
+  <p>Don't forget to start your backend server, then authenticate yourself.</p>
+)
