@@ -24,7 +24,7 @@ export default function AuthModal({open, close, isRegisterMode, toggleRegister})
       isRegisterMode ? await register(formData) : await login(formData)
       close()
     } catch (error) {
-      setError(error)
+      setError("error: " + error)
     }
 
     setLoading(false)

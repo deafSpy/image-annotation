@@ -1,5 +1,6 @@
 import {useAuth} from './contexts/AuthContext'
 import Header from './components/Header'
+import "./styles/index.css"
 
 export default function App() {
   const {isLoggedIn} = useAuth()
