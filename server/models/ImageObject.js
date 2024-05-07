@@ -8,6 +8,10 @@ const instance = new mongoose.Schema(
       lowercase: true,
       unique: true,
     },
+    category: {
+      type: String,
+      required: true,
+    },
     user: {
       type: String,
       required: true,

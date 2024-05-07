@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const instance = new mongoose.Schema(
   {
-    username: {
+    email: {
       type: String,
       required: true,
       lowercase: true,
@@ -18,6 +18,7 @@ const instance = new mongoose.Schema(
       enum: ['user', 'admin'],
       default: 'user',
     },
+    
   },
   {
     timestamps: true,

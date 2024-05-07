@@ -8,16 +8,14 @@ import {
   ListSubheader,
   ListItemButton,
 } from '@mui/material'
-import OnlineIndicator from './OnlineIndicator'
-import AuthModal from './AuthModal'
-import {useAuth} from '../contexts/AuthContext'
+import { useAuth } from '../contexts/AuthContext'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   const {isLoggedIn, account, logout} = useAuth()
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [popover, setPopover] = useState(false)
-  const [authModal, setAuthModal] = useState(false)
   const [register, setRegister] = useState(false)
 
   const openPopover = (e) => {
@@ -30,26 +28,13 @@ export default function Header() {
     setAnchorEl(null)
   }
 
-  const clickLogin = () => {
-    setRegister(false)
-    setAuthModal(true)
-    closePopover()
-  }
-
-  const clickRegister = () => {
-    setRegister(true)
-    setAuthModal(true)
-    closePopover()
-  }
 
   return (
     <AppBar className='header' position='static'>
       <h1>Web App</h1>
 
       <IconButton onClick={openPopover}>
-        <OnlineIndicator online={isLoggedIn}>
           <Avatar src={account?.username || ''} alt={account?.username || ''} />
-        </OnlineIndicator>
       </IconButton>
 
       <Popover
@@ -67,19 +52,13 @@ export default function Header() {
             <ListItemButton onClick={logout}>Logout</ListItemButton>
           ) : (
             <Fragment>
-              <ListItemButton onClick={clickLogin}>Login</ListItemButton>
-              <ListItemButton onClick={clickRegister}>Reigster</ListItemButton>
+              <Link to="/login"><ListItemButton>Login</ListItemButton></Link>
+              <Link to="/register"><ListItemButton>Reigster</ListItemButton></Link>
             </Fragment>
           )}
         </List>
       </Popover>
 
-      <AuthModal
-        open={authModal}
-        close={() => setAuthModal(false)}
-        isRegisterMode={register}
-        toggleRegister={() => setRegister((prev) => !prev)}
-      />
     </AppBar>
   )
 }

@@ -1,30 +1,30 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import { HomePage } from "./pages/HomePage";
+// import { HomePage } from "../";
 import { Login } from "./pages/Login";
 import App from "./App";
 
 
 
 const LazyLogin = lazy(
-  () => import("./components/pages/Login")
+  () => import("./pages/Login")
 );
 
 const LazyRegister = lazy(
-    () => import("./components/pages/Register")
+    () => import("./pages/Register")
 );
 
 const LazyUpload = lazy(
-    () => import("./components/pages/Upload")
+    () => import("./pages/Upload")
 );
 
 const LazyMy = lazy(
-    () => import("./components/pages/GalleryMy")
+    () => import("./pages/GalleryMy")
 );
 
 const LazyAll = lazy(
-    () => import("./components/pages/GalleryAll")
+    () => import("./pages/GalleryAll")
 );
 
 const appRouter = createBrowserRouter([

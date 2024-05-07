@@ -1,32 +1,19 @@
-const mongoose = require('mongoose')
-const {MONGO_URI} = require('../constants')
-const {MONGO_OPTIONS} = require('../constants')
+const mongoose = require("mongoose");
+const configKeys = require("../constants");
+const colors = require('colors');
 
-class MongoDB {
-  constructor() {
-    this.mongoose = mongoose
-    this.isConnected = false
-    this.MONGO_URI = MONGO_URI
-    this.MONGO_OPTIONS = MONGO_OPTIONS
+mongoose.set("strictQuery", true);
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(configKeys.MONGO_URI, {
+      dbName: configKeys.MONGO_DBNAME,
+    });
+    console.log('Database connected successfully'.magenta);
+  } catch (error) {
+    console.log("Failed to connect to MongoDB".red, error);
+    process.exit(1);
   }
+};
 
-  async connect() {
-    if (this.isConnected) return
-
-    try {
-      const db = await this.mongoose.connect(this.MONGO_URI, this.MONGO_OPTIONS)
-      const connection = db.connection
-
-      this.isConnected = connection.readyState === 1
-      if (this.isConnected) console.log('✅ MongoDB connected')
-
-      connection.on('connected', () => console.log('✅ MongoDB connected')) // re-connected
-      connection.on('disconnected', () => console.log('❌ MongoDB disconnected')) // disconnected
-      connection.on('error', (error) => console.log('❌ MongoDB connection error', error)) // listen for errors during the session
-    } catch (error) {
-      console.log('❌ MongoDB connection error:', error.message)
-    }
-  }
-}
-
-module.exports = new MongoDB()
+module.exports = connectDB;

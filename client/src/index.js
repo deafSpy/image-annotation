@@ -1,16 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import {AuthProvider} from './contexts/AuthContext'
-import CssBaseline from '@mui/material/CssBaseline'
-import '@fontsource/roboto'
+import { RouterProvider } from "react-router-dom";
+import AppRouter from './routes'
+import { AuthProvider } from './contexts/AuthContext'
+import { ToastContainer } from "react-toastify";
+
 import './styles/index.css'
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <CssBaseline />
-      <App />
+            {/* <App /> */}
+        <RouterProvider router={AppRouter} />
+        <ToastContainer />
+            
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root'),

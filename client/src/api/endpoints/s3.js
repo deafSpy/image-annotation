@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BACKEND_URL } from '../../constants';
+import { BACKEND_URL } from '../../constants/common';
 import END_POINTS from '../../constants/endpoints';
 
 const getS3Data = async (key) => {

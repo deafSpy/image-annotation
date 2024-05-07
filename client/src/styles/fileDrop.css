@@ -1,0 +1,22 @@
+.dropzone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+
+    position: relative;
+    cursor: pointer;
+    pointer-events: auto;
+    user-select: none;
+
+    z-index: 3;
+}
+
+.dropzone:hover {
+    cursor: pointer;
+}
+
+.dropzone.dragging {
+    border-color: #007bff;
+}

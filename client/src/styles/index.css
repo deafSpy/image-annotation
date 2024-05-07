@@ -3,8 +3,12 @@
   --offline: #b74400;
 }
 
+html, body {
+    margin: 0px;
+}
+
 body {
-  font-family: 'Roboto';
+  font-family: 'Lato';
   font-size: 16px;
 }
 

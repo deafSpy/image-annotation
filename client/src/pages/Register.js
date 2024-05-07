@@ -2,14 +2,15 @@ import React,{useEffect} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { register } from "../../../api/endpoints/auth";
-import { APP_LOGO } from "../constants";
+import { register } from "../api/endpoints/auth";
+import { APP_LOGO } from "../constants/common";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (userInfo) => {
-    try {
+      try {
+          console.log(userInfo)
         const response = await register(userInfo);
         console.log(response)
 
@@ -17,7 +18,7 @@ const Register = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       }); 
         
-      response && navigate('/login')
+    //   response && navigate('/login')
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -29,11 +30,11 @@ const Register = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '5rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
       <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '2.5rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '28rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem' }}>
         <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '24rem' }}>
-          <Link to="/">
+          <Link to="/" style={{display: "flex", justifyContent: "center", width: "100%"}}>
             <img
-              style={{ marginLeft: 'auto', marginRight: 'auto', height: '2.5rem', width: 'auto' }}
+              style={{ height: '2.5rem', width: 'auto' }}
               src={APP_LOGO}
-              alt='E-Learning'
+              alt='Image Annotation'
             />
           </Link>
           <h2 style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '1.5rem', fontWeight: 'bold', lineHeight: '1.111', letterSpacing: 'tight', color: '#1a202c' }}>

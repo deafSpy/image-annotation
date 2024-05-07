@@ -1,43 +1,24 @@
 import React, { useState } from 'react';
+import Dropzone from 'react-dropzone';
+import ReactDOMServer from 'react-dom/server';
+import FileDrop from '../components/FileDrop';
 
 function UploadComponent() {
-  const [file, setFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      // You can replace this URL with your actual upload endpoint
-      const uploadURL = 'http://example.com/upload';
-      fetch(uploadURL, {
-        method: 'POST',
-        body: formData,
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    }
-  };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="fileUpload">Upload file:</label>
-        <input type="file" id="fileUpload" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
-      {file && <p>File ready to upload: {file.name}</p>}
+
+      
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '5rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
+        <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '2.5rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '28rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem' }}>
+            <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '24rem' }}>
+
+                <FileDrop />
+                  
+            </div>
+        </div>
     </div>
+
   );
 }
 

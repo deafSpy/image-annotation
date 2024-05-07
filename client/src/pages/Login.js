@@ -1,13 +1,15 @@
-import React,{useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../../api/endpoints/auth";
-import { APP_LOGO } from "../constants";
+import { login } from "../api/endpoints/auth";
+import { APP_LOGO } from "../constants/common";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Login = () => {
   const navigate = useNavigate();
-    const isLoggedIn = useSelector(selectIsLoggedIn)
+    // const isLoggedIn = useState(false)
     
   const handleSubmit = async (userInfo) => {
     try {
@@ -26,6 +28,8 @@ const Login = () => {
 
         setToken(accessToken)
 
+        localStorage.setItem("isLoggedIn", true)
+
       toast.success(response?.data?.message, {
         position: toast.POSITION.BOTTOM_RIGHT,
       }); 
@@ -37,10 +41,16 @@ const Login = () => {
       });
     }
   };
-  useEffect(() => {
-    if(isLoggedIn){
-      navigate("/upload")
-    }
+    
+    useEffect(() => {
+
+        const isLoggedIn = localStorage.getItem("isLoggedIn")
+
+        if (isLoggedIn !== null && isLoggedIn) {
+            console.log(isLoggedIn)
+            navigate("/upload")
+        }
+        
   },[])
   
 
@@ -48,9 +58,9 @@ const Login = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '5rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
       <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '2.5rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '28rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem' }}>
         <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '24rem' }}>
-          <Link to="/">
+          <Link to="/" style={{display: "flex", justifyContent: "center", width: "100%"}}>
             <img
-              style={{ marginLeft: 'auto', marginRight: 'auto', height: '2.5rem', width: 'auto' }}
+              style={{ height: '2.5rem', width: 'auto' }}
               src={APP_LOGO}
               alt='E-Learning'
             />
@@ -60,7 +70,7 @@ const Login = () => {
           </h2>
         </div>
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ email: "", password: "" }}
           onSubmit={handleSubmit}
         >
           <Form style={{ marginTop: '2.5rem', gap: '1.5rem' }}>
@@ -101,7 +111,7 @@ const Login = () => {
                     href='/'
                     style={{ fontWeight: 'bold', color: '#4f46e5', textDecoration: 'none', hover: { color: '#4338ca' } }}
                   >
-                    Forgot password?
+                    {/* Forgot password? */}
                   </a>
                 </div>
               </div>
@@ -136,7 +146,7 @@ const Login = () => {
         <p style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.875rem', color: '#718096' }}>
           Do not have an account?
           <Link
-            to='/instructors/register'
+            to='/register'
             style={{ fontWeight: 'bold', lineHeight: '1.5', color: '#4f46e5', textDecoration: 'none', hover: { color: '#4338ca' } }}
           >
             &nbsp; Sign up
