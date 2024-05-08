@@ -42,10 +42,73 @@ const Register = () => {
           </h2>
         </div>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: "", password: "", first_name: "", last_name: "", username: "" }}
           onSubmit={handleSubmit}
         >
           <Form style={{ marginTop: '2.5rem', gap: '1.5rem' }}>
+            <div>
+              <label
+                htmlFor='first_name'
+                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+              >
+                First Name
+              </label>
+              <Field
+                id='first_name'
+                name='first_name'
+                type='text'
+                required
+                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+              />
+              <ErrorMessage
+                name='first_name'
+                component='div'
+                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor='last_name'
+                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+              >
+                Last Name
+              </label>
+              <Field
+                id='last_name'
+                name='last_name'
+                type='text'
+                required
+                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+              />
+              <ErrorMessage
+                name='last_name'
+                component='div'
+                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor='username'
+                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+              >
+                Username
+              </label>
+              <Field
+                id='username'
+                name='username'
+                type='text'
+                required
+                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+              />
+              <ErrorMessage
+                name='username'
+                component='div'
+                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+              />
+            </div>
+
             <div>
               <label
                 htmlFor='email'
@@ -53,21 +116,19 @@ const Register = () => {
               >
                 Email address
               </label>
-              <div style={{ marginTop: '0.5rem' }}>
-                <Field
-                  id='email'
-                  name='email'
-                  type='email'
-                  autoComplete='email'
-                  required
-                  style={{ paddingLeft: '0.5rem', display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)', ringWidth: '1px', ringColor: '#cbd5e0', focus: { ringWidth: '2px', ringColor: '#4f46e5' } }}
-                />
-                <ErrorMessage
-                  name='email'
-                  component='div'
-                  style={{ color: '#e53e3e', fontSize: '0.875rem' }}
-                />
-              </div>
+              <Field
+                id='email'
+                name='email'
+                type='email'
+                autoComplete='email'
+                required
+                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+              />
+              <ErrorMessage
+                name='email'
+                component='div'
+                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+              />
             </div>
 
             <div>
@@ -77,27 +138,25 @@ const Register = () => {
               >
                 Password
               </label>
-              <div style={{ marginTop: '0.5rem' }}>
-                <Field
-                  id='password'
-                  name='password'
-                  type='password'
-                  autoComplete='current-password'
-                  required
-                  style={{ paddingLeft: '0.5rem', display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)', ringWidth: '1px', ringColor: '#cbd5e0', focus: { ringWidth: '2px', ringColor: '#4f46e5' } }}
-                />
-                <ErrorMessage
-                  name='password'
-                  component='div'
-                  style={{ color: '#e53e3e', fontSize: '0.875rem' }}
-                />
-              </div>
+              <Field
+                id='password'
+                name='password'
+                type='password'
+                autoComplete='current-password'
+                required
+                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+              />
+              <ErrorMessage
+                name='password'
+                component='div'
+                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+              />
             </div>
 
             <div>
               <button
                 type='submit'
-                style={{ display: 'flex', width: '100%', justifyContent: 'center', borderRadius: '0.375rem', backgroundColor: '#4f46e5', padding: '0.375rem', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: 'white', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', hover: { backgroundColor: '#4338ca' }, focusVisible: { outline: '2px solid transparent', outlineOffset: '2px', outlineColor: '#4f46e5' } }}
+                style={{ display: 'flex', width: '100%', justifyContent: 'center', borderRadius: '0.375rem', backgroundColor: '#4f46e5', padding: '0.375rem', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: 'white', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}
               >
                 Register
               </button>
@@ -109,7 +168,7 @@ const Register = () => {
           Already have an account?
           <Link
             to='/login'
-            style={{ fontWeight: 'bold', lineHeight: '1.5', color: '#4f46e5', textDecoration: 'none', hover: { color: '#4338ca' } }}
+            style={{ fontWeight: 'bold', lineHeight: '1.5', color: '#4f46e5', textDecoration: 'none' }}
           >
             &nbsp; Sign in
           </Link>

@@ -1,0 +1,76 @@
+.image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-family: "Lato";
+}
+
+.innerContainer {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.textContainer {
+    width: 75%;
+    padding-left: 3rem;
+}
+
+@media (min-width: 768px) {
+    .textContainer {
+        width: 40%;
+        padding-left: 5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .textContainer {
+        padding-left: 3.75rem;
+    }
+}
+
+.heading {
+    margin-bottom: 1rem;
+    font-size: 5rem;
+    font-family: 'serif';
+}
+
+@media (min-width: 768px) {
+    .heading {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heading {
+        font-size: 5rem;
+    }
+}
+
+.subText {
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    font-family: 'sans-serif';
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 0.5rem;
+    font-family: 'sans-serif';
+}
+
+.buttonStyle {
+    font-family: 'Lato';
+}

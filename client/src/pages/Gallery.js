@@ -15,10 +15,21 @@ const Gallery = () => {
     fetchImages();
   }, [filterUserImages]);
 
-  const fetchImages = async () => {
-      const response = await getAllImageObjects();
-      console.log(response)
-    setImages(response.data);
+    const fetchImages = async () => {
+        try {
+            const response = await getAllImageObjects();
+            console.log(response)
+            setImages(response.data);
+
+            toast.success("Images fetched successfully", {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        } catch (error) {
+            toast.error(error.message, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        }
+    
   };
 
   const handleSearchChange = (event) => {
@@ -54,7 +65,7 @@ const Gallery = () => {
         </Button>
       )}
       <Grid container spacing={2} className="gallery-grid">
-        {images.map((image, index) => (
+        {filteredImages.map((image, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
                 <GalleryCard image={image} />
           </Grid>

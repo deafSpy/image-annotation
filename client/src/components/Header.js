@@ -46,9 +46,9 @@ export default function Header() {
               </div>
         </div>
 
-      {/* <IconButton onClick={openPopover}>
+      <IconButton onClick={openPopover}>
           <Avatar src={account?.username || ''} alt={account?.username || ''} />
-      </IconButton> */}
+      </IconButton>
 
       <Popover
         anchorEl={anchorEl}

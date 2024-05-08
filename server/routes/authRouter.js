@@ -10,7 +10,6 @@ const authRouter = () => {
     router.post('/register', controller.register);
 
     router.post('/login', controller.login);
-    router.get("/test", controller.test);
 
     // router.use(authorizeBearerToken);
 

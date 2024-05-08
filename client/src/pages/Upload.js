@@ -43,31 +43,34 @@ function UploadComponent() {
     
 
     const handleSubmit = async () => {
-        console.log(file);
-        console.log(selectedCategory);
 
-        const { url } = await fetch("http://localhost:4000/s3URL").then(res => res.json())
-        console.log(url)
+        try {
+            const { url } = await fetch("http://localhost:4000/s3URL").then(res => res.json())
+            console.log(url)
 
-        await fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            body: file
-        })
+            await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
+                body: file
+            })
 
-        const imageURL = url.split("?")[0]
-        console.log(imageURL)
+            const imageURL = url.split("?")[0]
+            console.log(imageURL)
 
-        const imageName = imageURL.split(".com/")[1]
-        // console.log(imageName)
-        const userID = localStorage.getItem("userID")
-        // console.log("userID", userID)
-        const response2 = await makeImageObject({imageLink: imageName, category: categories[selectedCategory], userID: userID})
-        // console.log(response2)
-        // const response3 = await updateImageObject({imageId: response2?.data?._id, category: categories[5]})
-        // console.log(response3)
+            const imageName = imageURL.split(".com/")[1]
+            const userID = localStorage.getItem("userID")
+            const response = await makeImageObject({ imageLink: imageName, category: categories[selectedCategory], userID: userID })
+            
+            toast.success("Annotation uploaded successfully", {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        } catch (error) {
+            toast.error(error.message, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        }
     }
 
   return (
