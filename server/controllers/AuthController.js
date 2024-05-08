@@ -2,17 +2,11 @@ const joi = require('joi');
 const bcrypt = require('bcrypt');
 const Account = require('../models/Account');
 const { signToken } = require('../middlewares/jsonwebtoken');
+const asyncHandler = require('express-async-handler')
 
 const AuthController = () => {
 
-    const test = async (request, response) => {
-        response.status(200).json({
-            message: 'Hello',
-            data: { item: "Hello world" }
-        });
-    }
-
-    const register = async (request, response) => {
+    const register = asyncHandler(async (request, response) => {
         try {
             // Validate request data
             await joi.object({
@@ -27,7 +21,7 @@ const AuthController = () => {
         }
 
         try {
-            const { email, password } = request.body;
+            const { email, username, first_name, last_name, password } = request.body;
 
             // Verify account email as unique
             const existingAccount = await Account.findOne({ email });
@@ -35,6 +29,15 @@ const AuthController = () => {
                 return response.status(400).json({
                     error: 'Duplicate Email',
                     message: 'An account already exists with that email',
+                });
+            }
+
+            // Verify account username as unique
+            const existingUsername = await Account.findOne({ username });
+            if (existingUsername) {
+                return response.status(400).json({
+                    error: 'Duplicate Username',
+                    message: 'An account already exists with that username',
                 });
             }
 
@@ -51,16 +54,22 @@ const AuthController = () => {
 
             response.status(201).json({
                 message: 'Successfully registered',
-                data: { email: newAccount.email, id: newAccount._id },
+                data: {
+                    email: newAccount.email,
+                    id: newAccount._id,
+                    username: newAccount.username,
+                    first_name: newAccount.first_name,
+                    last_name: newAccount.last_name,
+                },
                 token,
             });
         } catch (error) {
             console.error(error);
             return response.status(500).send();
         }
-    };
+    });
 
-    const login = async (request, response) => {
+    const login = asyncHandler(async (request, response) => {
         try {
             // Validate request data
             await joi.object({
@@ -105,10 +114,9 @@ const AuthController = () => {
             console.error(error);
             return response.status(500).send();
         }
-    }
+    })
 
     return {
-        test,
         register,
         login
     }

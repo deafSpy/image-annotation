@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
   const register = (formData = {}) =>
     new Promise((resolve, reject) => {
       axios
-        .post('/auth/register', formData)
+        .post('api/auth/register', formData)
         .then(({
           data: {
             data: accountData,

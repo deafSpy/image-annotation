@@ -1,0 +1,38 @@
+.gallery-wrapper {
+    margin: 25px;
+    margin-top: 60px;
+}
+
+.gallery-grid {
+    margin-top: 40px;
+}
+
+.gallery-card {
+    height: 250px;
+    width: 200px;
+    padding: 25px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    border-radius: 10px;
+}
+
+.gallery-card-image {
+    height: 200px;
+    width: 200px;
+}
+
+.gallery-card-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 15px;
+    border: 2px solid;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}

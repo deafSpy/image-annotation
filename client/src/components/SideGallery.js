@@ -6,7 +6,7 @@ import Edit from "./Edit";
 
 import { deleteImageObject, updateImageObject } from "../api/endpoints/image";
 
-const SideGallery = () => {
+const SideGallery = (handleUpload) => {
     const [images, setImages] = useState([]);
     const baseURL = "https://image-annotation-equitable.s3.ap-southeast-2.amazonaws.com"
 
@@ -35,7 +35,9 @@ const SideGallery = () => {
         setImages(images.filter(image => image._id !== id))
     }
 
-    const handleEdit = async (id) => {
+    const handleEdit = async (index) => {
+        // localStorage.setItem("isEdit", true)
+        // handleUpload(images[index])
         await updateImageObject({imageId: id})
     }
 
@@ -49,7 +51,7 @@ const SideGallery = () => {
                         <div className="SideGallery-item" style={{backgroundColor: colors2[categories[image.category] % 4], borderColor: colors1[categories[image.category] % 4]}}>{image.category}</div>
                         <div className="options-wrapper">
                             <Cross onClick={() => handleDelete(image._id)} />
-                            <Edit onClick={() => handleEdit(image._id)} />
+                            {/* <Edit onClick={() => handleEdit(image._id)} /> */}
                         </div>
 
                     </div>

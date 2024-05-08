@@ -10,6 +10,8 @@ import {
 } from '@mui/material'
 import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
+import { APP_LOGO } from '../constants/common'
+import '../styles/header.css'
 
 export default function Header() {
   const {isLoggedIn, account, logout} = useAuth()
@@ -30,12 +32,23 @@ export default function Header() {
 
 
   return (
-    <AppBar className='header' position='static'>
-      <h1>Web App</h1>
+    <div className='header'>
+          <Link to="/">
+              <img src={APP_LOGO} alt="Image Annotation" style={{width: "min(200px, 20vw)"}} />
+          </Link>
 
-      <IconButton onClick={openPopover}>
+        <div className='middle-container'>
+              <div className='middle-container-item'>
+                  <Link to="/upload">Upload</Link>
+              </div>
+              <div className='middle-container-item'>
+                  <Link to="/gallery">Gallery</Link>
+              </div>
+        </div>
+
+      {/* <IconButton onClick={openPopover}>
           <Avatar src={account?.username || ''} alt={account?.username || ''} />
-      </IconButton>
+      </IconButton> */}
 
       <Popover
         anchorEl={anchorEl}
@@ -53,12 +66,12 @@ export default function Header() {
           ) : (
             <Fragment>
               <Link to="/login"><ListItemButton>Login</ListItemButton></Link>
-              <Link to="/register"><ListItemButton>Reigster</ListItemButton></Link>
+              <Link to="/register"><ListItemButton>Register</ListItemButton></Link>
             </Fragment>
           )}
         </List>
       </Popover>
 
-    </AppBar>
+    </div>
   )
 }

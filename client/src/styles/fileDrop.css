@@ -18,6 +18,8 @@
     pointer-events: auto;
     user-select: none;
     border-radius: 7px;
+    margin-top: -10px;
+    margin-bottom: 10px;
 
     z-index: 3;
 }

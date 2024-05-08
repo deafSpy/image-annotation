@@ -73,7 +73,7 @@ function UploadComponent() {
   return (
 
       
-    <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', marginTop: '0rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
+    <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', marginTop: '1rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
         <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '15rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
               <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
                   Check your Annotations here!
