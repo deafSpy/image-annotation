@@ -1,66 +1,61 @@
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import "../styles/fileDrop.css";
+import { useRef, useEffect } from 'react';
 
-function FileDrop() {
+function FileDrop({ file, setFile, handleUpload }) {
+    const canvasRef = useRef(null);
 
-      const [file, setFile] = useState(null);
-
-  const handleUpload = (acceptedFiles) => {
-    console.log("logging drop/selected file",acceptedFiles);
-    // fake request to upload file
-    const url = "https://api.escuelajs.co/api/v1/files/upload";
-    const formData = new FormData();
-    formData.append("file", acceptedFiles[0]); // Assuming you only accept one file
-
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          // File uploaded successfully
-          setFile(acceptedFiles[0]);
-        } else {
-          // File upload failed
-          console.error(response);
+    
+    useEffect(() => {
+        if (file) {
+            const canvas = canvasRef.current;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const image = new Image();
+            image.src = URL.createObjectURL(file);
+            image.onload = () => {
+                ctx.drawImage(image, 0, 0, 450, 450);
+            };
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+
+    }, [file])
 
 
     return (
-        <>
-            {
-            !file ? <Dropzone onDrop={handleUpload} accept="image/*" maxSize={3072000}>
+        <div className="fileDrop">
+            
+            <Dropzone onDrop={handleUpload} maxSize={3072000}>
                         {({ getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject }) => {
-                            const additionalClass = isDragAccept ? "accept" : isDragReject ? "reject" : "";
+                            // const additionalClass = isDragAccept ? "accept" : isDragReject ? "reject" : "";
 
                             return (
                                 <div
                                     {...getRootProps({
-                                        className: `dropzone ${additionalClass}`,
+                                        className: `dropzone center`,
                                     })}
                                 >
                                     <input {...getInputProps()} />
-                                    <p>Drag'n'drop images, or click to select files</p>
+                                    <img src={"https://res.cloudinary.com/dzeil57n4/image/upload/v1715130097/4147103_n7j55q.png"}
+                                        alt="upload"
+                                        style={{maxHeight: "30px", width: "auto", marginRight: "5px"}}
+                                    />
+                                    <p className="dropzone-text"><b>Click to upload</b> or Drag and drop</p>
                                 </div>
                             );
                         }}
-                    </Dropzone>
-                    : (
-                        <>
-                            <h4>File Uploaded Successfully !!</h4>
-                            
-                        </>
-            )}
-        </>
+            </Dropzone>
+            <div className="image-display">
+                {file && (
+                    <canvas ref={canvasRef} width="450" height="450" style={{border: "1px solid black"}}></canvas>
+                )}
+            </div>
+                
+        </div>
     )
 
 }
+            
 
 export default FileDrop;
 

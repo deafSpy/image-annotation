@@ -1,0 +1,30 @@
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 12px;
+    width: 100px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+
+    font-family: "Lato";
+    font-size: 12px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-wrapper {
+    margin-top: 20px;
+}

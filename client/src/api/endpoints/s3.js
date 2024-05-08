@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BACKEND_URL } from '../../constants/common';
 import END_POINTS from '../../constants/endpoints';
+import S3FileUpload from 'react-s3'
 
 const getS3Data = async (key) => {
   try {
@@ -23,9 +24,18 @@ const getAllS3Data = async () => {
 };
 
 
-const uploadS3Data = async (data) => {
-  try {
-    const response = await axios.post(`${BACKEND_URL}/${END_POINTS.UPLOAD_FILE}`, data);
+const uploadS3Data = async (image) => {
+    try {
+        let formData = new FormData()
+        formData.append('file', image, image.name)
+        console.log([...formData])
+        const response = await axios.post(`${BACKEND_URL}/${END_POINTS.UPLOAD_FILE}`, formData, {
+            headers:
+            {
+                'Content-Type': `multipart/form-data`
+            }
+        
+        })
     return response.data;
   } catch (error) {
     console.error('Error posting S3 data:', error);

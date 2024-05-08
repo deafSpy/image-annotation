@@ -1,0 +1,53 @@
+:root {
+    --color-1: #167288;
+    --color-2: #8cdaec;
+    --color-3: #b45248;
+    --color-4: #d48c84;
+    --color-5: #a89a49;
+    --color-6: #d6cfa2;
+    --color-7: #3cb464;
+    --color-8: #9bddb1;
+    --color-9: #643c6a;
+    --color-10:#836394;
+}
+
+.SideGallery-container {
+    border-color: gray;
+    border-top: 2px solid gray;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.SideGallery-container:first-child {
+    /* border-top: none; */
+}
+
+
+
+.SideGallery-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 10px;
+    border: 2px solid;
+    border-radius: 8px;
+    margin: 10px;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+}

@@ -1,0 +1,11 @@
+.cross {
+    margin-top: 11px;
+}
+
+.edit {
+    transform: scale(0.5);
+}
+
+.small-icon {
+    cursor: pointer;
+}

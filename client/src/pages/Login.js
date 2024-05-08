@@ -29,6 +29,7 @@ const Login = () => {
         setToken(accessToken)
 
         localStorage.setItem("isLoggedIn", true)
+        localStorage.setItem("userID", response?.data?.id)
 
       toast.success(response?.data?.message, {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -44,12 +45,12 @@ const Login = () => {
     
     useEffect(() => {
 
-        const isLoggedIn = localStorage.getItem("isLoggedIn")
+        // const isLoggedIn = localStorage.getItem("isLoggedIn")
 
-        if (isLoggedIn !== null && isLoggedIn) {
-            console.log(isLoggedIn)
-            navigate("/upload")
-        }
+        // if (isLoggedIn !== null && isLoggedIn) {
+        //     console.log(isLoggedIn)
+        //     navigate("/upload")
+        // }
         
   },[])
   

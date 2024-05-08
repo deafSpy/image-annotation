@@ -3,9 +3,20 @@ import { BACKEND_URL } from '../../constants/common';
 import END_POINTS from '../../constants/endpoints';
 
 
-const makeImageObject = async (data) => {
+const makeImageObject = async ({imageLink, category, userID}) => {
+const data = JSON.stringify({
+    imageLink: imageLink,
+    category: category,
+    userID: userID
+})
+    
+    console.log(data)
   try {
-    const response = await axios.post(`${BACKEND_URL}/${END_POINTS.CREATE_IMAGE}`, data);
+      const response = await axios.post(`${BACKEND_URL}/${END_POINTS.CREATE_IMAGE}`, data, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
     return response.data;
   } catch (error) {
     console.error('Error uploading image:', error);
@@ -13,7 +24,7 @@ const makeImageObject = async (data) => {
   }
 };
 
-const getImageObject = async (imageId) => {
+const getImageObject = async ({imageId}) => {
   try {
     const response = await axios.get(`${BACKEND_URL}/${END_POINTS.GET_IMAGE}/${imageId}`);
     return response.data;
@@ -23,7 +34,7 @@ const getImageObject = async (imageId) => {
   }
 };
 
-const getAllImageObjectsByUser = async (userId) => {
+const getAllImageObjectsByUser = async ({userId}) => {
   try {
     const response = await axios.get(`${BACKEND_URL}/${END_POINTS.GET_IMAGES_BY_USER_ID}/${userId}`);
     return response.data;
@@ -44,9 +55,17 @@ const getAllImageObjects = async () => {
   }
 };
 
-const updateImageObject = async (imageId, imageData) => {
+const updateImageObject = async ({ imageId, category }) => {
+    console.log(imageId, category)
+    const data = JSON.stringify({
+        category: category
+    })
   try {
-    const response = await axios.put(`${BACKEND_URL}/${END_POINTS.UPDATE_IMAGE}/${imageId}`, imageData);
+    const response = await axios.put(`${BACKEND_URL}/${END_POINTS.UPDATE_IMAGE}/${imageId}`, data, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
     return response.data;
   } catch (error) {
     console.error('Error updating image:', error);
@@ -55,7 +74,8 @@ const updateImageObject = async (imageId, imageData) => {
 };
 
 
-const deleteImageObject = async (imageId) => {
+const deleteImageObject = async ({ imageId }) => {
+    console.log(imageId)
   try {
     const response = await axios.delete(`${BACKEND_URL}/${END_POINTS.DELETE_IMAGE}/${imageId}`);
     return response.data;
