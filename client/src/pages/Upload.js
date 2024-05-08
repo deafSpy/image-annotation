@@ -6,6 +6,8 @@ import CategoryDisplay from '../components/CategoryDisplay';
 import { uploadS3Data } from "../api/endpoints/s3";
 import { makeImageObject, updateImageObject } from "../api/endpoints/image";
 import SideGallery from "../components/SideGallery";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/upload.css";
 
 function UploadComponent() {

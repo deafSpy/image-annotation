@@ -12,13 +12,13 @@ const login = async (credentials) => {
   }
 };
 
-const register = async ({ credentials }) => {
+const register = async ({ email, first_name, last_name, username, password }) => {
     const data = JSON.stringify({
-        email: credentials.email,
-        first_name: credentials.first_name,
-        last_name: credentials.last_name,
-        username: credentials.username,
-        password: credentials.password
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        password: password
     })
   try {
       const response = await axios.post(`${BACKEND_URL}/${END_POINTS.REGISTER}`, data, {

@@ -59,14 +59,15 @@ h1 {
     cursor: pointer;
 }
 
+.middle-container-item:hover {
+    /* border: 2px solid #000; */
+    background-color: aliceblue;
+}
+
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.middle-container-item:hover {
-    border: 2px solid #000;
 }
 
 a:-webkit-any-link {

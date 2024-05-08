@@ -1,9 +1,11 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../api/endpoints/auth";
 import { APP_LOGO } from "../constants/common";
+import "react-toastify/dist/ReactToastify.css";
+import "../styles/register.css"
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ const Register = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       }); 
         
-    //   response && navigate('/login')
+      response && navigate('/login')
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -27,17 +29,17 @@ const Register = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '5rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
-      <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '2.5rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '28rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem' }}>
-        <div style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '24rem' }}>
-          <Link to="/" style={{display: "flex", justifyContent: "center", width: "100%"}}>
+    <div className="register-container">
+      <div className="register-form-container">
+        <div className="register-logo-link">
+          <Link to="/" className="register-logo-link">
             <img
-              style={{ height: '2.5rem', width: 'auto' }}
               src={APP_LOGO}
               alt='Image Annotation'
+              className="register-img"
             />
           </Link>
-          <h2 style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '1.5rem', fontWeight: 'bold', lineHeight: '1.111', letterSpacing: 'tight', color: '#1a202c' }}>
+          <h2 className="register-title">
             Register your account
           </h2>
         </div>
@@ -45,12 +47,12 @@ const Register = () => {
           initialValues={{ email: "", password: "", first_name: "", last_name: "", username: "" }}
           onSubmit={handleSubmit}
         >
-          <Form style={{ marginTop: '2.5rem', gap: '1.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div style={{ width: '48%' }}>
+          <Form className="register-form">
+            <div className="register-name-fields">
+              <div className="register-name-field">
                 <label
                   htmlFor='first_name'
-                  style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+                  className="register-label"
                 >
                   First Name
                 </label>
@@ -59,19 +61,19 @@ const Register = () => {
                   name='first_name'
                   type='text'
                   required
-                  style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+                  className="register-field"
                 />
                 <ErrorMessage
                   name='first_name'
                   component='div'
-                  style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+                  className="register-error-message"
                 />
               </div>
 
-              <div style={{ width: '48%' }}>
+              <div className="register-name-field">
                 <label
                   htmlFor='last_name'
-                  style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+                  className="register-label"
                 >
                   Last Name
                 </label>
@@ -80,41 +82,20 @@ const Register = () => {
                   name='last_name'
                   type='text'
                   required
-                  style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+                  className="register-field"
                 />
                 <ErrorMessage
                   name='last_name'
                   component='div'
-                  style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+                  className="register-error-message"
                 />
               </div>
             </div>
 
-            <div>
-              <label
-                htmlFor='username'
-                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
-              >
-                Username
-              </label>
-              <Field
-                id='username'
-                name='username'
-                type='text'
-                required
-                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
-              />
-              <ErrorMessage
-                name='username'
-                component='div'
-                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
-              />
-            </div>
-
-            <div>
+            <div className="emailField">
               <label
                 htmlFor='email'
-                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+                className="register-label"
               >
                 Email address
               </label>
@@ -124,19 +105,40 @@ const Register = () => {
                 type='email'
                 autoComplete='email'
                 required
-                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+                className="register-field"
               />
               <ErrorMessage
                 name='email'
                 component='div'
-                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+                className="register-error-message"
+              />
+                      </div>
+                      
+                                  <div className="usernameField">
+              <label
+                htmlFor='username'
+                className="register-label"
+              >
+                Username
+              </label>
+              <Field
+                id='username'
+                name='username'
+                type='text'
+                required
+                className="register-field"
+              />
+              <ErrorMessage
+                name='username'
+                component='div'
+                className="register-error-message"
               />
             </div>
 
-            <div>
+            <div className="passwordField">
               <label
                 htmlFor='password'
-                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+                className="register-label"
               >
                 Password
               </label>
@@ -146,31 +148,29 @@ const Register = () => {
                 type='password'
                 autoComplete='current-password'
                 required
-                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+                className="register-field"
               />
               <ErrorMessage
                 name='password'
                 component='div'
-                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+                className="register-error-message"
               />
             </div>
 
-            
-              <button
-                type='submit'
-                style={{ display: 'flex', width: '100%', justifyContent: 'center', borderRadius: '0.375rem', backgroundColor: '#4f46e5', padding: '0.375rem', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: 'white', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}
-              >
-                Register
-              </button>
-            
+            <button
+              type='submit'
+              className="register-button"
+            >
+              Register
+            </button>
           </Form>
         </Formik>
 
-        <p style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.875rem', color: '#718096' }}>
+        <p className="register-link-text">
           Already have an account?
           <Link
-            to='/login'
-            style={{ fontWeight: 'bold', lineHeight: '1.5', color: '#4f46e5', textDecoration: 'none' }}
+                      to='/login'
+                      className="register-bold-text"
           >
             &nbsp; Sign in
           </Link>

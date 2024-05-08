@@ -5,6 +5,8 @@ import { getAllImageObjects } from '../api/endpoints/image';
 import "../styles/gallery.css"
 import GalleryCard from '../components/GalleryCard';
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 const Gallery = () => {

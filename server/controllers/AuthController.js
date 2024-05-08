@@ -11,6 +11,9 @@ const AuthController = () => {
             // Validate request data
             await joi.object({
                 email: joi.string().email().required(),
+                username: joi.string().required(),
+                first_name: joi.string().required(),
+                last_name: joi.string().required(),
                 password: joi.string().required(),
             }).validateAsync(request.body);
         } catch (error) {
@@ -44,19 +47,19 @@ const AuthController = () => {
             // Encrypt password
             const salt = await bcrypt.genSalt(10);
             const hash = await bcrypt.hash(password, salt);
-
+            
             // Create account
-            const newAccount = new Account({ email, password: hash });
+            const newAccount = new Account({ email, username, first_name, last_name, password: hash });
             await newAccount.save();
-
+            
             // Generate access token
             const token = signToken({ uid: newAccount._id, role: newAccount.role });
-
+            
             response.status(201).json({
                 message: 'Successfully registered',
                 data: {
-                    email: newAccount.email,
                     id: newAccount._id,
+                    email: newAccount.email,
                     username: newAccount.username,
                     first_name: newAccount.first_name,
                     last_name: newAccount.last_name,
