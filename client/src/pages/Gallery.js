@@ -4,6 +4,8 @@ import { Grid, TextField, Button, Card, CardMedia, CardContent, Typography } fro
 import { getAllImageObjects } from '../api/endpoints/image';
 import "../styles/gallery.css"
 import GalleryCard from '../components/GalleryCard';
+import { toast } from "react-toastify";
+
 
 const Gallery = () => {
   const { isLoggedIn, account } = useAuth();

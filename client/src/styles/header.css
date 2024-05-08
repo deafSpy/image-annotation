@@ -36,7 +36,7 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 140px;
+    width: 200px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -50,6 +50,23 @@ h1 {
     text-decoration: none !important;
     color: #000;
     font-family: "Lato-Bold";
+
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+
+    cursor: pointer;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle-container-item:hover {
+    border: 2px solid #000;
 }
 
 a:-webkit-any-link {

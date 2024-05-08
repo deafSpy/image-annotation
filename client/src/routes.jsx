@@ -5,7 +5,6 @@ import Header from "./components/Header";
 const LazyLogin = lazy(() => import("./pages/Login"));
 const LazyRegister = lazy(() => import("./pages/Register"));
 const LazyUpload = lazy(() => import("./pages/Upload"));
-const LazyMy = lazy(() => import("./pages/GalleryMy"));
 const LazyGallery = lazy(() => import("./pages/Gallery"));
 const Homepage = lazy(() => import("./pages/Homepage"));
 
@@ -41,15 +40,6 @@ const appRouter = createBrowserRouter([
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <LazyUpload />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/my",
-    element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Header />
-        <LazyMy />
       </Suspense>
     ),
   },

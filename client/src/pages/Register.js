@@ -11,7 +11,7 @@ const Register = () => {
   const handleSubmit = async (userInfo) => {
       try {
           console.log(userInfo)
-        const response = await register(userInfo);
+        const response = await register({email: userInfo.email, first_name: userInfo.first_name, last_name: userInfo.last_name, username: userInfo.username, password: userInfo.password});
         console.log(response)
 
       toast.success("Registration successful!", {
@@ -46,46 +46,48 @@ const Register = () => {
           onSubmit={handleSubmit}
         >
           <Form style={{ marginTop: '2.5rem', gap: '1.5rem' }}>
-            <div>
-              <label
-                htmlFor='first_name'
-                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
-              >
-                First Name
-              </label>
-              <Field
-                id='first_name'
-                name='first_name'
-                type='text'
-                required
-                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
-              />
-              <ErrorMessage
-                name='first_name'
-                component='div'
-                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
-              />
-            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{ width: '48%' }}>
+                <label
+                  htmlFor='first_name'
+                  style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+                >
+                  First Name
+                </label>
+                <Field
+                  id='first_name'
+                  name='first_name'
+                  type='text'
+                  required
+                  style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+                />
+                <ErrorMessage
+                  name='first_name'
+                  component='div'
+                  style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+                />
+              </div>
 
-            <div>
-              <label
-                htmlFor='last_name'
-                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
-              >
-                Last Name
-              </label>
-              <Field
-                id='last_name'
-                name='last_name'
-                type='text'
-                required
-                style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
-              />
-              <ErrorMessage
-                name='last_name'
-                component='div'
-                style={{ color: '#e53e3e', fontSize: '0.875rem' }}
-              />
+              <div style={{ width: '48%' }}>
+                <label
+                  htmlFor='last_name'
+                  style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: '#1a202c' }}
+                >
+                  Last Name
+                </label>
+                <Field
+                  id='last_name'
+                  name='last_name'
+                  type='text'
+                  required
+                  style={{ display: 'block', width: '100%', borderRadius: '0.375rem', border: 'none', padding: '0.375rem', color: '#1a202c', boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)' }}
+                />
+                <ErrorMessage
+                  name='last_name'
+                  component='div'
+                  style={{ color: '#e53e3e', fontSize: '0.875rem' }}
+                />
+              </div>
             </div>
 
             <div>
@@ -153,14 +155,14 @@ const Register = () => {
               />
             </div>
 
-            <div>
+            
               <button
                 type='submit'
                 style={{ display: 'flex', width: '100%', justifyContent: 'center', borderRadius: '0.375rem', backgroundColor: '#4f46e5', padding: '0.375rem', fontSize: '0.875rem', fontWeight: 'medium', lineHeight: '1.5', color: 'white', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}
               >
                 Register
               </button>
-            </div>
+            
           </Form>
         </Formik>
 

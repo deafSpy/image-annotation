@@ -34,14 +34,14 @@ export default function Header() {
   return (
     <div className='header'>
           <Link to="/">
-              <img src={APP_LOGO} alt="Image Annotation" style={{width: "min(200px, 20vw)"}} />
+              <img src={APP_LOGO} alt="Image Annotation" style={{width: "min(200px, 13vw)"}} />
           </Link>
 
         <div className='middle-container'>
-              <div className='middle-container-item'>
+              <div className='middle-container-item center'>
                   <Link to="/upload">Upload</Link>
               </div>
-              <div className='middle-container-item'>
+              <div className='middle-container-item center'>
                   <Link to="/gallery">Gallery</Link>
               </div>
         </div>

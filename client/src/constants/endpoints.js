@@ -12,6 +12,7 @@ const END_POINTS = {
     GET_IMAGE: "api/image/", // :id 
     GET_ALL_IMAGES: "api/image/all",
     GET_IMAGES_BY_USER_ID: "api/image/user", // :userID 
+    GET_USER_BY_ID: "api/user/", // :id
 
 }
 
