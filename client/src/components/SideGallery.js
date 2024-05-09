@@ -3,11 +3,13 @@ import { getAllImageObjectsByUser } from "../api/endpoints/image";
 import "../styles/sideGallery.css"
 import Cross from "./Cross";
 import Edit from "./Edit";
+import { toast } from "react-toastify";
 
 import { deleteImageObject, updateImageObject } from "../api/endpoints/image";
 
 const SideGallery = (handleUpload) => {
     const [images, setImages] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [account, setAccount] = useState(null);
 
     const baseURL = "https://image-annotation-equitable.s3.ap-southeast-2.amazonaws.com"
@@ -25,11 +27,28 @@ const SideGallery = (handleUpload) => {
     useEffect(async () => {
 
         const account1 = localStorage.getItem("account")
-        setAccount(account1)
 
-        const objects = await getAllImageObjectsByUser({ userId: account1.id })
-        console.log(objects.data)
-        setImages(objects.data)
+        if (account1 !== null) {
+            try {
+                console.log(account1)
+                setAccount(JSON.parse(account1))
+                setIsLoggedIn(true)
+                console.log(account)
+    
+                const objects = await getAllImageObjectsByUser({ userId: account.id })
+                console.log(objects.data)
+                setImages(objects.data)
+
+            }
+
+            catch {
+                toast.error("Error fetching images", {
+                position: toast.POSITION.BOTTOM_RIGHT,
+                })
+            }
+
+        }
+
 
     }, [])
 
@@ -47,7 +66,8 @@ const SideGallery = (handleUpload) => {
 
 
     return (
-        <div>
+    <>
+        {isLoggedIn ? <div>
             {images.length === 0 ? <p>Loading...</p> :
                 images.map((image, i) => (
                     <div key={image._id} className="SideGallery-container">
@@ -60,7 +80,8 @@ const SideGallery = (handleUpload) => {
 
                     </div>
                 ))}
-        </div>
+        </div > : <p>Your Uploads will be displayed here</p>}
+        </>
     )
 }
 

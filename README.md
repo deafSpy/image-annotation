@@ -1,73 +1,27 @@
-# MERN Stack Template
+# Image Annotation Platform
 
-<img src='https://github.com/belferink1996/MERN-template/blob/images/images/mern.jpeg' alt='MERN banner' width='700' />
+## Overview
+This is a specialized image annotation platform developed using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It offers a robust interface for users to upload, annotate, and manage images efficiently. The platform also integrates AWS for cloud storage, allowing for scalable image handling and management.
 
-- **M** = [MongoDB](https://www.mongodb.com)
-- **E** = [Express.js](https://expressjs.com)
-- **R** = [React.js](https://reactjs.org)
-- **N** = [Node.js](https://nodejs.org)
+## Features
+- User Authentication: Implements a secure user authentication and authorization system.
+- Image Upload and Management: Users can upload images and manage them through a user-friendly interface.
+- Annotation Tools: Provides tools for annotating uploaded images, supporting various annotation types.
+- Cloud Storage: Utilizes AWS (Amazon Web Services) for storing images securely and reliably.
+- Responsive Design: Ensures a seamless user experience across various devices with a fully responsive design.
 
-<br />
-<br />
+## Installation
+1. Clone the repository: 
 
-# What is this template?
+- Node.js: JavaScript runtime environment for server-side development.
+- AWS (lambda, s3, cloudfront): Scalable & Reliable Serverless Computing, Cloud Storage, and Content Delivery Network (CDN)
+- Redis: In-memory data structure store used for caching.
+- Stripe: Payment processing platform for secure and seamless transactions.
+- HTML/CSS: Frontend markup and styling languages for creating user interfaces.
 
-This template allows you to quick-start your Fullstack application using the MERN stack, it has a server setup with some basic authentication, and a client ready to communicate with the backend.<br />
-I have attempted to use the best practices for both ends, which should make it easy for any advanced/new developer to use, and perhaps learn from.
 
-<img src='https://github.com/belferink1996/MERN-template/blob/images/images/Screen%20Shot%202021-09-29%20at%2011.08.23.png' width='700' />
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-<br />
-<br />
-
-# How to use this template
-
-[📀 Demo video](https://youtu.be/N2pvvkyoS68)
-
-### STEP 1:
-
-Click ["Use this template"](https://github.com/benelferink/MERN-template/generate) to generate a
-new repository.<br />
-Then open your terminal and clone your repository:
-
-> cd ~/Desktop <br />
-> git clone https://github.com/[your-user-name]/[your-repo-name].git
-
-<br />
-
-### STEP 2:
-
-Go to the root of your repository's folder, and install all dependecies:
-
-> cd ~/Desktop/[your-repo-name]<br />
-> npm install
-
-<br />
-
-### STEP 3:
-
-Prepare your MongoDB database ([atlas](https://www.mongodb.com/cloud/atlas),
-[community](<https://github.com/benelferink/MERN-template/wiki/Install-MongoDB-Community-Server-(MacOS)>)).<br />
-Then configure your database within `server/constants/index.js`, by configuring the `MONGO_URI` variable.
-
-<br />
-
-### STEP 4: CODE !!!
-
-<br />
-<br />
-
-### To run the client and/or the server, you can do any of the following:
-
-From the `root` of your project run:
-> npm start
-
-#### OR
-
-Open terminal #1 (backend)
-> cd ./server<br />
-> npm start
-
-Open terminal #2 (frontend)
-> cd ./client<br />
-> npm start
+## Contact
+For any inquiries or support, please contact [shreyas.palley@outlook.com](mailto:shreyas.palley@outlook.com).

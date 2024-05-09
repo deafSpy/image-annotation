@@ -82,7 +82,7 @@ function UploadComponent() {
 
     useEffect(() => {
         const account1 = localStorage.getItem("account")
-        if (account1) {
+        if (account1 !== null) {
             setAccount(JSON.parse(account1))
             console.log(account)
             setIsLoggedIn(true)

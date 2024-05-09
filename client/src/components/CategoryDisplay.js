@@ -9,12 +9,16 @@ function CategoryDisplay({selectedCategory, setSelectedCategory}) {
   ];
 
   return (
-    <div className="category-display">
+      <div className="category-display">
+          <div className="category-display-label">Choose a category:</div>
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
         className="category-select"
       >
+        <option value="" disabled>
+          Choose a category
+        </option>
         {categories.map((category, index) => (
           <option key={index} value={category}>
             {category}

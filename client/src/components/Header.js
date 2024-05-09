@@ -38,7 +38,7 @@ export default function Header() {
     
     useEffect(() => {
         const account1 = localStorage.getItem("account")
-        if (account1) {
+        if (account1 !== null) {
             console.log(account1)
             setAccount(JSON.parse(account1))
             console.log(account)

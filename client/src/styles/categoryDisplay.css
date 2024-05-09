@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .category-select {
@@ -23,3 +24,10 @@
     border-color: #007bff;
     outline: none;
 }
+
+.category-display-label {
+    font-size: 11px;
+    color: #333;
+    margin-bottom: 4px;
+}
+

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const LazyLogin = lazy(() => import("./pages/Login"));
 const LazyRegister = lazy(() => import("./pages/Register"));
@@ -15,6 +16,7 @@ const appRouter = createBrowserRouter([
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <Homepage />
+        <Footer />
       </Suspense>
     ),
   },
@@ -40,6 +42,7 @@ const appRouter = createBrowserRouter([
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <LazyUpload />
+        <Footer />
       </Suspense>
     ),
   },
@@ -49,6 +52,7 @@ const appRouter = createBrowserRouter([
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <LazyGallery />
+        <Footer />
       </Suspense>
     ),
   },

@@ -15,7 +15,7 @@ function FileDrop({ file, setFile, handleUpload }) {
             const image = new Image();
             image.src = URL.createObjectURL(file);
             image.onload = () => {
-                ctx.drawImage(image, 0, 0, 450, 450);
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
             };
         }
 
@@ -47,7 +47,7 @@ function FileDrop({ file, setFile, handleUpload }) {
             </Dropzone>
             <div className="image-display">
                 {file && (
-                    <canvas ref={canvasRef} width="450" height="450" style={{border: "1px solid black"}}></canvas>
+                    <canvas ref={canvasRef} width="500" height="500" style={{border: "1px solid black"}}></canvas>
                 )}
             </div>
                 

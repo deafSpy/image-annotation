@@ -47,7 +47,8 @@ const Login = () => {
                                             username: response?.data.username, 
                                             first_name: response?.data.first_name, 
                                             last_name: response?.data.last_name, 
-                                            username: response?.data.username
+                                            username: response?.data.username,
+                                            id: response?.data.id
                                         }))
 
 
