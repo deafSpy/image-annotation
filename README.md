@@ -19,33 +19,37 @@ To install and run the Image Annotation Platform on your local machine, follow t
    cd image-annotation-platform
    ```
 
-2. 
+2. **Update the .env file in the root directory of both client and server folders and include AWS credentials and other sensitive information:**
+   ```bash
+   cp .env.example .env
+   ```
 
-2. **Navigate to the server directory and install dependencies:**
+3. **Navigate to the server directory and install dependencies:**
    ```bash
    cd server
    npm install
    ```
 
-3. **Start the server:**
+4. **Start the server:**
    ```bash
    npm run dev
    ```
 
-4. **Open a new terminal, navigate to the client directory, and install dependencies:**
+5. **Open a new terminal, navigate to the client directory, and install dependencies:**
    ```bash
    cd ../client
    npm install
    ```
 
-5. **Start the client:**
+6. **Start the client:**
    ```bash
-   npm run dev
+   npm run start
    ```
 
 After completing these steps, the server and client should be running, and you can access the application through your web browser.
 
-
+## Report
+There is a report included in this repository, showing all the pages and features included in the project.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
