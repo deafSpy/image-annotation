@@ -3,12 +3,15 @@ import { BACKEND_URL } from '../../constants/common';
 import END_POINTS from '../../constants/endpoints';
 
 
-const makeImageObject = async ({imageLink, category, userID}) => {
+const makeImageObject = async ({imageLink, category, userID, username}) => {
 const data = JSON.stringify({
     imageLink: imageLink,
     category: category,
-    userID: userID
+    userID: userID,
+    username
 })
+    
+    console.log(category)
     
     console.log(data)
   try {

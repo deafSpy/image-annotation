@@ -28,10 +28,10 @@ function GalleryCard({ image }) {
             ctx.drawImage(image1, 0, 0, 200, 200);
         };
 
-        console.log(image.user)
-        const response = await getUserById(image.user)
-        console.log(response.data)
-        setUser(response.data)
+        // console.log(image.user)
+        // const response = await getUserById(image.user)
+        // console.log(response.data)
+        // setUser(response.data)
 
 
     }, [])

@@ -6,9 +6,9 @@ const ImageController = () => {
     const createImage = asyncHandler(async (req, res) => {
         try {
             console.log(req.body)
-            const { imageLink, category, userID } = req.body;
-            console.log(imageLink, category, userID)
-            const newImage = new ImageObject({ imageLink, category, user: userID });
+            const { imageLink, category, userID, username } = req.body;
+            console.log(imageLink, category, userID, username)
+            const newImage = new ImageObject({ imageLink, category, user: userID, username });
             await newImage.save();
             res.status(201).json({ message: 'Image created successfully', data: newImage });
         } catch (error) {

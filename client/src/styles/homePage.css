@@ -46,7 +46,7 @@
     font-size: 3rem;
     font-family: 'austragen';
     font-weight: 700;
-    max-width: 400px;
+    max-width: max(400px, 30vw);
     line-height: 1.0;
 }
 

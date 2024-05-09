@@ -4,6 +4,9 @@ import "../styles/sideGallery.css"
 import Cross from "./Cross";
 import Edit from "./Edit";
 import { toast } from "react-toastify";
+import GalleryCard from "./GalleryCard";
+import Grid from "@mui/material/Grid";
+import "../styles/gallery.css"
 
 import { deleteImageObject, updateImageObject } from "../api/endpoints/image";
 
@@ -26,14 +29,13 @@ const SideGallery = (handleUpload) => {
 
     useEffect(async () => {
 
-        const account1 = localStorage.getItem("account")
+        let account1 = localStorage.getItem("account")
 
         if (account1 !== null) {
             try {
                 console.log(account1)
                 setAccount(JSON.parse(account1))
                 setIsLoggedIn(true)
-                console.log(account)
     
                 const objects = await getAllImageObjectsByUser({ userId: account.id })
                 console.log(objects.data)
@@ -41,8 +43,8 @@ const SideGallery = (handleUpload) => {
 
             }
 
-            catch {
-                toast.error("Error fetching images", {
+            catch (error) {
+                toast.error(error, {
                 position: toast.POSITION.BOTTOM_RIGHT,
                 })
             }
@@ -68,18 +70,13 @@ const SideGallery = (handleUpload) => {
     return (
     <>
         {isLoggedIn ? <div>
-            {images.length === 0 ? <p>Loading...</p> :
-                images.map((image, i) => (
-                    <div key={image._id} className="SideGallery-container">
-                        <img src={`${baseURL}/${image.imageLink}`} alt={image.category} style={{maxWidth: "12vw"}} />
-                        <div className="SideGallery-item" style={{backgroundColor: colors2[categories[image.category] % 4], borderColor: colors1[categories[image.category] % 4]}}>{image.category}</div>
-                        <div className="options-wrapper">
-                            <Cross onClick={() => handleDelete(image._id)} />
-                            {/* <Edit onClick={() => handleEdit(image._id)} /> */}
-                        </div>
-
-                    </div>
+            <Grid container spacing={2} className="sidegallery-grid">
+                {images.map((image, index) => (
+                <Grid item xs={12} sm={6} md={6} key={index}>
+                        <GalleryCard image={image} />
+                </Grid>
                 ))}
+            </Grid>
         </div > : <p>Your Uploads will be displayed here</p>}
         </>
     )

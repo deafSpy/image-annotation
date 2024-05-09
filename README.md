@@ -6,18 +6,45 @@ This is a specialized image annotation platform developed using the MERN (MongoD
 ## Features
 - User Authentication: Implements a secure user authentication and authorization system.
 - Image Upload and Management: Users can upload images and manage them through a user-friendly interface.
-- Annotation Tools: Provides tools for annotating uploaded images, supporting various annotation types.
-- Cloud Storage: Utilizes AWS (Amazon Web Services) for storing images securely and reliably.
+- Annotation Tools: Provides category selection tool with CIFAR10 in mind.
+- Cloud Storage: Utilizes AWS S3 (Amazon Web Services Cloud Storage Buckets) for storing images securely and reliably.
 - Responsive Design: Ensures a seamless user experience across various devices with a fully responsive design.
 
 ## Installation
-1. Clone the repository: 
+To install and run the Image Annotation Platform on your local machine, follow these steps:
 
-- Node.js: JavaScript runtime environment for server-side development.
-- AWS (lambda, s3, cloudfront): Scalable & Reliable Serverless Computing, Cloud Storage, and Content Delivery Network (CDN)
-- Redis: In-memory data structure store used for caching.
-- Stripe: Payment processing platform for secure and seamless transactions.
-- HTML/CSS: Frontend markup and styling languages for creating user interfaces.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-repository/image-annotation-platform.git
+   cd image-annotation-platform
+   ```
+
+2. 
+
+2. **Navigate to the server directory and install dependencies:**
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. **Start the server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open a new terminal, navigate to the client directory, and install dependencies:**
+   ```bash
+   cd ../client
+   npm install
+   ```
+
+5. **Start the client:**
+   ```bash
+   npm run dev
+   ```
+
+After completing these steps, the server and client should be running, and you can access the application through your web browser.
+
 
 
 ## License
