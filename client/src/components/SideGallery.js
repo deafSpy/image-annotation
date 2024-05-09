@@ -8,6 +8,8 @@ import { deleteImageObject, updateImageObject } from "../api/endpoints/image";
 
 const SideGallery = (handleUpload) => {
     const [images, setImages] = useState([]);
+    const [account, setAccount] = useState(null);
+
     const baseURL = "https://image-annotation-equitable.s3.ap-southeast-2.amazonaws.com"
 
     const colors1 = ["#167288", "#b45248", "#a89a49", "#3cb464"]
@@ -22,8 +24,10 @@ const SideGallery = (handleUpload) => {
 
     useEffect(async () => {
 
-        const userID = localStorage.getItem("userID")
-        const objects = await getAllImageObjectsByUser({ userId: userID })
+        const account1 = localStorage.getItem("account")
+        setAccount(account1)
+
+        const objects = await getAllImageObjectsByUser({ userId: account1.id })
         console.log(objects.data)
         setImages(objects.data)
 

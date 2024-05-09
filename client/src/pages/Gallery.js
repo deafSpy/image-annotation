@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Grid, TextField, Button, Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { Grid, TextField, Button } from '@mui/material';
 import { getAllImageObjects } from '../api/endpoints/image';
 import "../styles/gallery.css"
 import GalleryCard from '../components/GalleryCard';
