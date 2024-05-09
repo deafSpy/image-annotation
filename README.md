@@ -8,10 +8,14 @@ This is a specialized image annotation platform developed using the MERN (MongoD
 - Image Upload and Management: Users can upload images and manage them through a user-friendly interface.
 - Annotation Tools: Provides category selection tool with CIFAR10 in mind.
 - Cloud Storage: Utilizes AWS S3 (Amazon Web Services Cloud Storage Buckets) for storing images securely and reliably.
+- Toast Notification System: A toast notification system is implemented to display messages to the user.
 - Responsive Design: Ensures a seamless user experience across various devices with a fully responsive design.
 - JWT Tokens: The platform uses JSON Web Tokens (JWT) for handling the authentication of users securely.
+- Batch Image Upload and Queue: Users can upload multiple images at once and annotate them in in a queue.
+- Large Image Upload: Images larger than a threshold are downloaded in chunks to prevent memory overflow.
 - Advanced Image Processing: The image annotation platform ensures that all images are in the same resolution and square format. This is to ensure consistency and ease of annotation.
 - Search Functionality: In the Gallery page, one can search for the images based on their annotated categories.
+
 
 ## Installation
 To install and run the Image Annotation Platform on your local machine, follow these steps:
