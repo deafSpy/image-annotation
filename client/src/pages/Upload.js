@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import ReactDOMServer from 'react-dom/server';
 import FileDrop from '../components/FileDrop';
@@ -9,38 +9,43 @@ import SideGallery from "../components/SideGallery";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/upload.css";
+import { useNavigate } from 'react-router-dom';
 
 function UploadComponent() {
-      const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [account, setAccount] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState(0);
+
+    const navigate = useNavigate()
     
-      const categories = [
-    "airplane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"
-  ];
+    const categories = [
+        "airplane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"
+    ];
 
     const handleUpload = (acceptedFiles) => {
-        console.log("logging drop/selected file",acceptedFiles);
+        console.log("logging drop/selected file", acceptedFiles);
 
         const url = "https://api.escuelajs.co/api/v1/files/upload";
         const formData = new FormData();
         formData.append("file", acceptedFiles[0]); // Assuming you only accept one file
 
         fetch(url, {
-        method: "POST",
-        body: formData,
+            method: "POST",
+            body: formData,
         })
-        .then((response) => {
-            if (response.ok) {
-            // File uploaded successfully
-            setFile(acceptedFiles[0]);
-            } else {
-            // File upload failed
-            console.error(response);
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            .then((response) => {
+                if (response.ok) {
+                    // File uploaded successfully
+                    setFile(acceptedFiles[0]);
+                } else {
+                    // File upload failed
+                    console.error(response);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
     
 
@@ -62,7 +67,7 @@ function UploadComponent() {
             console.log(imageURL)
 
             const imageName = imageURL.split(".com/")[1]
-            const userID = localStorage.getItem("userID")
+            const userID = account.id
             const response = await makeImageObject({ imageLink: imageName, category: categories[selectedCategory], userID: userID })
             
             toast.success("Annotation uploaded successfully", {
@@ -75,31 +80,46 @@ function UploadComponent() {
         }
     }
 
-  return (
+    useEffect(() => {
+        const account1 = localStorage.getItem("account")
+        if (account1) {
+            setAccount(JSON.parse(account1))
+            console.log(account)
+            setIsLoggedIn(true)
+        } else {
+            setIsLoggedIn(false)
+            navigate('/login')
+            toast.warning("You must be logged in to upload annotations", {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        }
+    }, [])
 
-      
-    <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', marginTop: '1rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
-        <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '15rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
-              <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
-                  Check your Annotations here!
-                  <SideGallery />
+    return (
+
+      <>
+        { isLoggedIn && (<div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', marginTop: '1rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
+            <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '15rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
+                <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
+                    Check your Annotations here!
+                    <SideGallery />
+                </div>
             </div>
-        </div>
 
-          <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '30rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
-            <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
+            <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '30rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
+                <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
 
-                  <FileDrop file={file} setFile={setFile} handleUpload={handleUpload} />
-                  <div className="button-wrapper flex-row">
-                    <CategoryDisplay selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-                    <button onClick={handleSubmit} className="submit-button center">
-                        Submit
-                    </button>
-                  </div>
+                    <FileDrop file={file} setFile={setFile} handleUpload={handleUpload} />
+                    <div className="button-wrapper flex-row">
+                        <CategoryDisplay selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+                        <button onClick={handleSubmit} className="submit-button center">
+                            Submit
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
+        </div>)} : <div>loading...</div>
+</>
   );
 }
 

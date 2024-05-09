@@ -110,7 +110,13 @@ const AuthController = () => {
 
             response.status(200).json({
                 message: 'Successfully logged-in',
-                data: { email: foundAccount.email, id: foundAccount._id },
+                data: {
+                    email: foundAccount.email,
+                    username: foundAccount.username, 
+                    first_name: foundAccount.first_name, 
+                    last_name: foundAccount.last_name,
+                    id: foundAccount._id
+                },
                 token,
             });
         } catch (error) {

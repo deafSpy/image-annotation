@@ -13,19 +13,19 @@ export default function Homepage() {
         <div className='container'>
           <div className='innerContainer'>
             <div className='textContainer'>
-                <div className='heading'>Image<br></br> Annotation</div>
+                <div className='heading'>Upload and Annotate your images</div>
                 <div className='subText'>
-                    Upload and Annotate your images!
+                    
                 </div>
-                <div className='buttonContainer'>
-                  <Link to='/upload'>
-                    <button className='buttonStyle'>
-                        Annotate!
-                    </button>
-                  </Link>
-                  <Link to='/gallery'>
+                    <div className='buttonContainer'>
+                <Link to='/gallery'>
                     <button className='buttonStyle'>
                         View Gallery
+                    </button>
+                  </Link>
+                  <Link to='/upload'>
+                    <button className='buttonStyle2'>
+                        Annotate
                     </button>
                   </Link>
                 </div>
