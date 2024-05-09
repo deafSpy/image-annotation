@@ -94,7 +94,7 @@ function UploadComponent() {
 
             const objects = await getAllImageObjectsByUser({ userId: account1.id })
             console.log(objects.data)
-            setImages(objects.data)
+            setImages(objects.data.reverse())
 
         } else {
             setIsLoggedIn(false)

@@ -122,6 +122,6 @@
     width: 48%
 }
 
-a:-webkit-any-link {
+.register-bold-text > a:-webkit-any-link {
     color: #4f46e5;
 }

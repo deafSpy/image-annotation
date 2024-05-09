@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import { APP_LOGO } from '../constants/common'
 import '../styles/header.css'
 
-export default function Header() {
+export default function Header({ page }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [account, setAccount] = useState(null)
 
@@ -54,10 +54,10 @@ export default function Header() {
           </Link>
 
         <div className='middle-container'>
-              <div className='middle-container-item center'>
+              <div className={`middle-container-item center ${page === "upload" ? "active" : ""}`}>
                   <Link to="/upload">Upload</Link>
               </div>
-              <div className='middle-container-item center'>
+              <div className={`middle-container-item center ${page === "gallery" ? "active" : ""}`}>
                   <Link to="/gallery">Gallery</Link>
               </div>
         </div>

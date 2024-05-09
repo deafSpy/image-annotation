@@ -7,7 +7,7 @@ const Cross = (props) => (
     xmlSpace="preserve"
     width={12}
         height={12}
-        className="cross small-icon"
+        className=""
     fill="red"
     viewBox="0 0 1792 1792"
     {...props}

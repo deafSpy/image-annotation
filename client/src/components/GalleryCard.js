@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../styles/gallery.css"
+import Cross from "./Cross"
+import { deleteImageObject } from "../api/endpoints/image"
 
-function GalleryCard({ image, type }) {
+function GalleryCard({ image, type, handleDelete }) {
     const canvasRef = useRef(null)
     const [imageLink, setImageLink] = useState(image.imageLink)
     const [user, setUser] = useState(null)
@@ -16,14 +18,12 @@ function GalleryCard({ image, type }) {
 
     const baseURL = "https://image-annotation-equitable.s3.ap-southeast-2.amazonaws.com"
 
-
     useEffect(async () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const image1 = new Image();
         image1.src = `${baseURL}/${imageLink}`;
-        console.log(image1.src)
         image1.onload = () => {
             ctx.drawImage(image1, 0, 0, 200, 200);
         };
@@ -46,19 +46,22 @@ function GalleryCard({ image, type }) {
                         <div className="gallery-card-user">{image.username}</div>
                     </div>
                     {(
-                        <canvas ref={canvasRef} width="200" height="200"></canvas>
+                        <canvas ref={canvasRef} width="200" height="200" style={{borderRadius: "5px"}}></canvas>
                     )}
                     </div>
                     </div>
                 ) :
             (
-                        <div className="gallery-card">
+            <div className="gallery-card">
                 <div className="gallery-card-image">
-                    <div>
+                    <div className="gallery-card-container">
                         <div className="gallery-card-item" style={{ backgroundColor: colors2[categories[image.category] % 4], borderColor: colors1[categories[image.category] % 4] }}>{image.category}</div>
+                        <div className="gallery-card-close center">
+                                    <Cross className="cross" onClick={() => { handleDelete(image._id) }} />
+                        </div>
                     </div>
                     {(
-                        <canvas ref={canvasRef} width="200" height="200"></canvas>
+                        <canvas ref={canvasRef} width="200" height="200" style={{borderRadius: "5px"}}></canvas>
                     )}
                 </div>
             </div>)

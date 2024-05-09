@@ -51,7 +51,6 @@ const SideGallery = ({handleUpload, images, setImages}) => {
     }, [])
 
     const handleDelete = async (id) => {
-        console.log(id)
         await deleteImageObject({imageId: id})
         setImages(images.filter(image => image._id !== id))
     }
@@ -69,11 +68,11 @@ const SideGallery = ({handleUpload, images, setImages}) => {
             <Grid container direction="column" spacing={2} className="sidegallery-grid">
                 {images.map((image, index) => (
                 <Grid item xs={12} key={index}>
-                        <GalleryCard image={image} />
+                        <GalleryCard image={image} handleDelete={handleDelete} />
                 </Grid>
                 ))}
             </Grid>
-        </div > : <p>Your Uploads will be displayed here</p>}
+        </div > : <p>Your Annotations will be displayed here</p>}
         </>
     )
 }

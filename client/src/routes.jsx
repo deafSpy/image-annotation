@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
     path: "/upload",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <Header />
+        <Header page="upload" />
         <LazyUpload />
         <Footer />
       </Suspense>
@@ -50,7 +50,7 @@ const appRouter = createBrowserRouter([
     path: "/gallery",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <Header />
+        <Header page="gallery" />
         <LazyGallery />
         <Footer />
       </Suspense>

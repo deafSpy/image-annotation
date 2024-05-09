@@ -32,10 +32,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 200px;
+    width: 220px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+
+    cursor: pointer;
 }
 
 .middle-container-item {    
@@ -60,6 +62,10 @@
     background-color: #dad9e9;
 }
 
+.active {
+    background-color: #cecce8;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -75,3 +81,4 @@ a:-webkit-any-link {
 .logout {
     color: red;
 }
+

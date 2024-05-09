@@ -70,7 +70,11 @@ After completing these steps, the server and client should be running, and you c
 <br></br>
 
 * **Upload**
-![alt text](screenshots/upload.png)
+![alt text](screenshots/upload1.png)
+<br></br>
+
+* **Upload**
+![alt text](screenshots/upload2.png)
 <br></br>
 
 * **Gallery**
@@ -83,6 +87,7 @@ After completing these steps, the server and client should be running, and you c
 
 * **Guest**
 ![alt text](screenshots/login_home.png)
+
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

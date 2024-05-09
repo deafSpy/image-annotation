@@ -47,7 +47,7 @@ function FileDrop({ file, setFile, handleUpload }) {
             </Dropzone>
             <div className="image-display">
                 {file && (
-                    <canvas ref={canvasRef} width="500" height="500" style={{border: "1px solid black"}}></canvas>
+                    <canvas ref={canvasRef} width="500" height="500" style={{ borderRadius: "8px" }}></canvas>
                 )}
             </div>
                 
