@@ -51,8 +51,12 @@ To install and run the Image Annotation Platform on your local machine, follow t
 
 After completing these steps, the server and client should be running, and you can access the application through your web browser.
 
-## Report
-There is a report included in this repository, showing all the pages and features included in the project.
+## Screens
+![alt text](screenshots/home.png)
+![alt text](screenshots/register.png)
+![alt text](screenshots/login.png)
+![alt text](screenshots/upload.png)
+![alt text](screenshots/gallery.png)
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
