@@ -10,6 +10,7 @@ This is a specialized image annotation platform developed using the MERN (MongoD
 - Cloud Storage: Utilizes AWS S3 (Amazon Web Services Cloud Storage Buckets) for storing images securely and reliably.
 - Responsive Design: Ensures a seamless user experience across various devices with a fully responsive design.
 - JWT Tokens: The platform uses JSON Web Tokens (JWT) for handling the authentication of users securely.
+- Advanced Image Processing: The image annotation platform ensures that all images are in the same resolution and square format. This is to ensure consistency and ease of annotation.
 
 ## Installation
 To install and run the Image Annotation Platform on your local machine, follow these steps:
