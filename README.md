@@ -52,12 +52,19 @@ To install and run the Image Annotation Platform on your local machine, follow t
 After completing these steps, the server and client should be running, and you can access the application through your web browser.
 
 ## Screens
+**Homepage**
 ![alt text](screenshots/home.png)
+**Register**
 ![alt text](screenshots/register.png)
+**Login**
 ![alt text](screenshots/login.png)
+**Upload**
 ![alt text](screenshots/upload.png)
+**Gallery**
 ![alt text](screenshots/gallery.png)
+**Logout**
 ![alt text](screenshots/logout_home.png)
+**Guest**
 ![alt text](screenshots/login_home.png)
 
 ## License
