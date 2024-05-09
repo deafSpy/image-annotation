@@ -1,4 +1,4 @@
-import {Fragment, useState} from 'react'
+import {Fragment, useState, useEffect } from 'react'
 import {
   AppBar,
   IconButton,
@@ -8,13 +8,13 @@ import {
   ListSubheader,
   ListItemButton,
 } from '@mui/material'
-import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 import { APP_LOGO } from '../constants/common'
 import '../styles/header.css'
 
 export default function Header() {
-  const {isLoggedIn, account, logout} = useAuth()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [account, setAccount] = useState(null)
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [popover, setPopover] = useState(false)
@@ -29,12 +29,28 @@ export default function Header() {
     setPopover(false)
     setAnchorEl(null)
   }
+    
+    const logout = () => {
+        localStorage.removeItem("account")
+        setIsLoggedIn(false)
+        setAccount(null)
+    }
+    
+    useEffect(() => {
+        const account1 = localStorage.getItem("account")
+        if (account1) {
+            console.log(account1)
+            setAccount(JSON.parse(account1))
+            console.log(account)
+            setIsLoggedIn(true)
+        }
+    }, [])
 
 
   return (
     <div className='header'>
           <Link to="/">
-              <img src={APP_LOGO} alt="Image Annotation" style={{width: "min(200px, 13vw)"}} />
+              <img src={APP_LOGO} alt="Image Annotation" style={{width: "min(100px, 13vw)"}} />
           </Link>
 
         <div className='middle-container'>
@@ -62,7 +78,7 @@ export default function Header() {
           </ListSubheader>
 
           {isLoggedIn ? (
-            <ListItemButton onClick={logout}>Logout</ListItemButton>
+            <ListItemButton onClick={logout} style={{color: "red"}}>Logout</ListItemButton>
           ) : (
             <Fragment>
               <Link to="/login"><ListItemButton>Login</ListItemButton></Link>
