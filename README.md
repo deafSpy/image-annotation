@@ -57,6 +57,8 @@ After completing these steps, the server and client should be running, and you c
 ![alt text](screenshots/login.png)
 ![alt text](screenshots/upload.png)
 ![alt text](screenshots/gallery.png)
+![alt text](screenshots/logout_home.png)
+![alt text](screenshots/login_home.png)
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

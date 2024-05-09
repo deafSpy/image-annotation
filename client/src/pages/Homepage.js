@@ -15,7 +15,7 @@ export default function Homepage() {
             <div className='textContainer'>
                 <div className='heading'>Upload and Annotate your images</div>
                 <div className='subText'>
-                    
+                    Annotate your images with CIFAR-10 classes
                 </div>
                     <div className='buttonContainer'>
                 <Link to='/gallery'>

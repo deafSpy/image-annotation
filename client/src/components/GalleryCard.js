@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { getUserById } from "../api/endpoints/user";
+import "../styles/gallery.css"
 
-function GalleryCard({ image }) {
+function GalleryCard({ image, type }) {
     const canvasRef = useRef(null)
     const [imageLink, setImageLink] = useState(image.imageLink)
     const [user, setUser] = useState(null)
@@ -37,17 +37,33 @@ function GalleryCard({ image }) {
     }, [])
 
     return (
-        <div className="gallery-card">
-            <div className="gallery-card-image">
-                <div>
-                    <div className="gallery-card-item" style={{backgroundColor: colors2[categories[image.category] % 4], borderColor: colors1[categories[image.category] % 4]}}>{image.category}</div>
-                    {/* <div className="gallery-card-user">{user.first_name} {user.last_name}</div> */}
+    <>
+        {(type && type == "gallery") ?
+            (<div className="gallery-card">
+                <div className="gallery-card-image">
+                    <div className="gallery-card-container">
+                        <div className="gallery-card-item" style={{ backgroundColor: colors2[categories[image.category] % 4], borderColor: colors1[categories[image.category] % 4] }}>{image.category}</div>
+                        <div className="gallery-card-user">{image.username}</div>
+                    </div>
+                    {(
+                        <canvas ref={canvasRef} width="200" height="200"></canvas>
+                    )}
+                    </div>
+                    </div>
+                ) :
+            (
+                        <div className="gallery-card">
+                <div className="gallery-card-image">
+                    <div>
+                        <div className="gallery-card-item" style={{ backgroundColor: colors2[categories[image.category] % 4], borderColor: colors1[categories[image.category] % 4] }}>{image.category}</div>
+                    </div>
+                    {(
+                        <canvas ref={canvasRef} width="200" height="200"></canvas>
+                    )}
                 </div>
-                {(
-                    <canvas ref={canvasRef} width="200" height="200"></canvas>
-                )}
-            </div>
-        </div>
+            </div>)
+                }
+        </>
     )
 }
 

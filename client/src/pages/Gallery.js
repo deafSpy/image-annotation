@@ -71,7 +71,7 @@ const Gallery = () => {
       <Grid container spacing={2} className="gallery-grid">
         {filteredImages.map((image, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
-                <GalleryCard image={image} />
+                <GalleryCard image={image} type="gallery" />
           </Grid>
         ))}
       </Grid>

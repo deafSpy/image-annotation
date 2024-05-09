@@ -36,3 +36,25 @@
     font-size: 10px;
     font-weight: 600;
 }
+
+.gallery-card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.gallery-card-user {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 15px;
+        border: 2px solid;
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: 10px;
+        font-weight: 600;
+}
+
