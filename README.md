@@ -1,7 +1,7 @@
 # Image Annotation Platform
 
 ## Overview
-This is a specialized image annotation platform developed using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It offers a robust interface for users to upload, annotate, and manage images efficiently. The platform also integrates AWS for cloud storage, allowing for scalable image handling and management.
+This is a specialized image annotation platform developed using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It offers a robust interface for users to upload, annotate, and manage images efficiently. The platform utilizes JWT tokens for secure user authentication and integrates AWS for cloud storage, allowing for scalable image handling and management.
 
 ## Features
 - User Authentication: Implements a secure user authentication and authorization system.
@@ -9,6 +9,7 @@ This is a specialized image annotation platform developed using the MERN (MongoD
 - Annotation Tools: Provides category selection tool with CIFAR10 in mind.
 - Cloud Storage: Utilizes AWS S3 (Amazon Web Services Cloud Storage Buckets) for storing images securely and reliably.
 - Responsive Design: Ensures a seamless user experience across various devices with a fully responsive design.
+- JWT Tokens: The platform uses JSON Web Tokens (JWT) for handling the authentication of users securely.
 
 ## Installation
 To install and run the Image Annotation Platform on your local machine, follow these steps:
