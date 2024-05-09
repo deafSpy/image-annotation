@@ -29,3 +29,13 @@
 .button-wrapper {
     margin-top: 20px;
 }
+
+.sidegallery-title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 1rem;
+
+    width: 100%;
+    text-align: center;
+}
+

@@ -10,8 +10,7 @@ import "../styles/gallery.css"
 
 import { deleteImageObject, updateImageObject } from "../api/endpoints/image";
 
-const SideGallery = (handleUpload) => {
-    const [images, setImages] = useState([]);
+const SideGallery = ({handleUpload, images, setImages}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [account, setAccount] = useState(null);
 
@@ -36,10 +35,7 @@ const SideGallery = (handleUpload) => {
                 console.log(account1)
                 setAccount(JSON.parse(account1))
                 setIsLoggedIn(true)
-    
-                const objects = await getAllImageObjectsByUser({ userId: account.id })
-                console.log(objects.data)
-                setImages(objects.data)
+
 
             }
 
@@ -70,9 +66,9 @@ const SideGallery = (handleUpload) => {
     return (
     <>
         {isLoggedIn ? <div>
-            <Grid container spacing={2} className="sidegallery-grid">
+            <Grid container direction="column" spacing={2} className="sidegallery-grid">
                 {images.map((image, index) => (
-                <Grid item xs={12} sm={6} md={6} key={index}>
+                <Grid item xs={12} key={index}>
                         <GalleryCard image={image} />
                 </Grid>
                 ))}

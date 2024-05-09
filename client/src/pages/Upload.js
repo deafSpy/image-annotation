@@ -10,9 +10,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/upload.css";
 import { useNavigate } from 'react-router-dom';
+import { getAllImageObjectsByUser } from '../api/endpoints/image';
 
 function UploadComponent() {
     const [file, setFile] = useState(null);
+    const [images, setImages] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [account, setAccount] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState("airplane");
@@ -71,6 +73,7 @@ function UploadComponent() {
                 userID: userID,
                 username: account.username
             })
+
             
             toast.success("Annotation uploaded successfully", {
                 position: toast.POSITION.BOTTOM_RIGHT,
@@ -82,12 +85,17 @@ function UploadComponent() {
         }
     }
 
-    useEffect(() => {
-        const account1 = localStorage.getItem("account")
+    useEffect(async () => {
+        const account1 = JSON.parse(localStorage.getItem("account"))
         if (account1 !== null) {
-            setAccount(JSON.parse(account1))
+            setAccount(account1)
             console.log(account)
             setIsLoggedIn(true)
+
+            const objects = await getAllImageObjectsByUser({ userId: account1.id })
+            console.log(objects.data)
+            setImages(objects.data)
+
         } else {
             setIsLoggedIn(false)
             navigate('/login')
@@ -102,25 +110,25 @@ function UploadComponent() {
       <>
             {isLoggedIn ?
                 (
-                    <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', marginTop: '1rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
-            // <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '15rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
-            //     <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
-            //         Check your Annotations here!
-            //         <SideGallery />
-            //     </div>
-            // </div>
-
-            <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '30rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
+                    <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'baseline', marginTop: '1rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
+            <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '15rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
                 <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
-
-                    <FileDrop file={file} setFile={setFile} handleUpload={handleUpload} />
-                    <div className="button-wrapper flex-row">
-                        <CategoryDisplay selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-                        <button onClick={handleSubmit} className="submit-button center">
-                            Submit
-                        </button>
+                    <div className='sidegallery-title'> Your Annotations</div>
+                                <SideGallery images={images} setImages={setImages} />
                     </div>
                 </div>
+
+                <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '30rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
+                    <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
+
+                        <FileDrop file={file} setFile={setFile} handleUpload={handleUpload} />
+                        <div className="button-wrapper flex-row">
+                            <CategoryDisplay selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+                            <button onClick={handleSubmit} className="submit-button center">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
             </div>
         </div>) : <div>loading...</div>}
 </>

@@ -12,6 +12,7 @@
     transition: border-color 0.3s;
 
     max-height: 20px;
+    width: 100%;
 
     position: relative;
     cursor: pointer;
