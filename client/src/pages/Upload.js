@@ -18,8 +18,23 @@ function UploadComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [account, setAccount] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState("airplane");
+    const [doUpdate, setDoUpdate] = useState(false)
 
     const navigate = useNavigate()
+
+    const [width, setWidth] = useState(window.innerWidth);
+
+function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+}
+useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+        window.removeEventListener('resize', handleWindowSizeChange);
+    }
+}, []);
+
+const isMobile = width <= 768;
     
 
     const handleUpload = (acceptedFiles) => {
@@ -74,6 +89,9 @@ function UploadComponent() {
                 username: account.username
             })
 
+            setImages([response.data, ...images])
+            setDoUpdate(!doUpdate)
+
             
             toast.success("Annotation uploaded successfully", {
                 position: toast.POSITION.BOTTOM_RIGHT,
@@ -92,9 +110,18 @@ function UploadComponent() {
             console.log(account)
             setIsLoggedIn(true)
 
-            const objects = await getAllImageObjectsByUser({ userId: account1.id })
-            console.log(objects.data)
-            setImages(objects.data.reverse())
+            try {
+                const objects = await getAllImageObjectsByUser({ userId: account1.id })
+                console.log(objects.data)
+                setImages(objects.data.reverse())
+
+            }
+            catch (error) {
+                // toast.warning("You must be logged in to upload annotations", {
+                //     position: toast.POSITION.BOTTOM_RIGHT,
+                // });
+                console.log(error)
+            }
 
         } else {
             setIsLoggedIn(false)
@@ -111,14 +138,19 @@ function UploadComponent() {
             {isLoggedIn ?
                 (
                     <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'baseline', marginTop: '1rem', paddingTop: '1.25rem', paddingBottom: '5rem', color: '#1a202c' }}>
+                <>
+                    {!isMobile && 
             <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '15rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
-                <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
                     <div className='sidegallery-title'> Your Annotations</div>
-                                <SideGallery images={images} setImages={setImages} />
-                    </div>
-                </div>
 
-                <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', padding: '2rem', width: '100%', maxWidth: '30rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', minHeight: "75vh" }}>
+                                    <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
+                                <SideGallery images={images} setImages={setImages} update={doUpdate} />
+                    </div>
+                            </div> }
+                            </>
+                
+
+                <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', margin: '4rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', border: '1px solid transparent', width: '100%', maxWidth: '30rem', marginLeft: 'auto', marginRight: 'auto', padding: '2.5rem', paddingBottom: '0rem', minHeight: "70vh" }}>
                     <div style={{ display: "flex", flexDirection: "column", marginLeft: 'auto', marginRight: 'auto', width: '100%', maxWidth: '18rem' }}>
 
                         <FileDrop file={file} setFile={setFile} handleUpload={handleUpload} />

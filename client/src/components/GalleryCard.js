@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../styles/gallery.css"
 import Cross from "./Cross"
-import { deleteImageObject } from "../api/endpoints/image"
 
-function GalleryCard({ image, type, handleDelete }) {
+
+function GalleryCard({ image, type, handleDelete, update, key }) {
     const canvasRef = useRef(null)
     const [imageLink, setImageLink] = useState(image.imageLink)
-    const [user, setUser] = useState(null)
 
 
     const colors1 = ["#167288", "#b45248", "#a89a49", "#3cb464"]
@@ -23,7 +22,8 @@ function GalleryCard({ image, type, handleDelete }) {
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const image1 = new Image();
-        image1.src = `${baseURL}/${imageLink}`;
+        image1.src = `${baseURL}/${image.imageLink}`;
+        console.log(image1.src)
         image1.onload = () => {
             ctx.drawImage(image1, 0, 0, 200, 200);
         };
@@ -34,7 +34,7 @@ function GalleryCard({ image, type, handleDelete }) {
         // setUser(response.data)
 
 
-    }, [])
+    }, [update])
 
     return (
     <>
@@ -46,7 +46,7 @@ function GalleryCard({ image, type, handleDelete }) {
                         <div className="gallery-card-user">{image.username}</div>
                     </div>
                     {(
-                        <canvas ref={canvasRef} width="200" height="200" style={{borderRadius: "5px"}}></canvas>
+                        <canvas ref={canvasRef} width="200" height="200" style={{borderRadius: "5px"}} key={key}></canvas>
                     )}
                     </div>
                     </div>

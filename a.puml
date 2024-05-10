@@ -1,0 +1,31 @@
+@startuml Image Annotation System
+
+entity "User" as User {
+    *id : int
+    *email : string
+    *username : string
+    *first_name : string
+    *last_name : string
+    password : string
+    -- 
+    +create()
+    +register()
+    +login()
+    +logout()
+}
+
+entity "Image" as Image {
+    *id : int
+    *likeName : string
+    *category : string
+    *userId : int
+    --
+    *create()
+    +uploadToS3()
+    +delete()
+}
+
+User ||--o{ Image : "owns"
+
+@enduml
+

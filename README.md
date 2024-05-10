@@ -55,6 +55,9 @@ To install and run the Image Annotation Platform on your local machine, follow t
 
 After completing these steps, the server and client should be running, and you can access the application through your web browser.
 
+## UML
+![alt text](screenshots/uml.png)
+
 ## Screens
 * **Homepage**
 ![alt text](screenshots/home.png)

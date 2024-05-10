@@ -5,6 +5,41 @@
     object-fit: cover;
 }
 
+.cifar-container {
+    position: absolute;
+    /* object-fit: cover; */
+
+    left: 70%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px solid #222;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+
+    padding: 5px;
+    opacity: 0.9
+}
+
+.cifar-container2 {
+
+    background-color: rgba(0, 0, 0, .0);
+
+
+    border: 2px solid #222;
+    border-radius: 16px;
+    padding: 20px;
+
+    background-image: radial-gradient(circle farthest-side at 50% 0, rgba(242, 242, 242, .2), rgba(0, 0, 0, 0));
+
+}
+
+.image2 {
+    height: 400px;   
+    width: auto;
+}
+
 .container {
     position: relative;
     height: 100%;
@@ -49,6 +84,13 @@
     font-weight: 700;
     max-width: max(400px, 30vw);
     line-height: 1.0;
+
+    text-shadow: 0 4px 10px rgba(0, 87, 255, .2),
+        0 -4px 10px rgba(255, 90, 0, .15),
+        0 0 30px rgba(255, 255, 255, .2);
+
+    backdrop-filter: blur(10px);
+
 }
 
 @media (min-width: 768px) {
@@ -71,7 +113,7 @@
 
 .buttonContainer {
     display: flex;
-    gap: 0.5rem;
+    gap: 1.4rem;
     font-family: 'Lato';
 }
 
@@ -84,6 +126,9 @@
     background-color: #4338ca;
     color: white;
     cursor: pointer;
+
+    box-shadow: 0px 0px 20px -2px rgba(67, 56, 202, 1);
+    transition: all 0.2s ease-in-out
 }
 
 .buttonStyle2 {
@@ -95,13 +140,20 @@
     background-color: #fff;
     color: #000;
     cursor: pointer;
+
+    box-shadow: 0px 0px 20px -2px rgba(67, 56, 202, 1);
+    transition: all 0.2s ease-in-out
 }
 
 .buttonStyle:hover {
-    background-color: #6458e2;
+    color: #dad9e9;
+    box-shadow: 0px 0px 20px 3px rgba(67, 56, 202, 1);
+    transition: all 0.2s ease-in-out
 }
 
 .buttonStyle2:hover {
-    background-color: #dad9e9;
+    color: #6458e2;
+    box-shadow: 0px 0px 20px 3px rgba(67, 56, 202, 1);
+    transition: all 0.2s ease-in-out
 }
 

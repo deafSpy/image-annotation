@@ -30,16 +30,16 @@ const Login = () => {
 
         setToken(accessToken)
 
-        console.log(
-            {
-                email: response?.data.email, 
-                username: response?.data.username, 
-                first_name: response?.data.first_name, 
-                last_name: response?.data.last_name, 
-                username: response?.data.username,
-                id: response?.data.id
-            }
-        )
+        // console.log(
+        //     {
+        //         email: response?.data.email, 
+        //         username: response?.data.username, 
+        //         first_name: response?.data.first_name, 
+        //         last_name: response?.data.last_name, 
+        //         username: response?.data.username,
+        //         id: response?.data.id
+        //     }
+        // )
 
 
         localStorage.setItem("account", JSON.stringify({
@@ -52,13 +52,13 @@ const Login = () => {
                                         }))
 
 
-      toast.success(response?.data?.message, {
+      toast.success("You have Successfully Signed in!", {
         position: toast.POSITION.BOTTOM_RIGHT,
       }); 
         
       response && navigate('/upload')
     } catch (error) {
-      toast.error(error.data?.message, {
+      toast.error("Invalid email or password", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }

@@ -1,4 +1,4 @@
-import {Fragment, useState, useEffect } from 'react'
+import {Fragment, useState, useEffect, useReducer } from 'react'
 import {
   AppBar,
   IconButton,
@@ -11,6 +11,9 @@ import {
 import { Link } from 'react-router-dom'
 import { APP_LOGO } from '../constants/common'
 import '../styles/header.css'
+import gsap from 'gsap'
+import { useLocation } from 'react-router-dom'
+
 
 export default function Header({ page }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -18,7 +21,9 @@ export default function Header({ page }) {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [popover, setPopover] = useState(false)
-  const [register, setRegister] = useState(false)
+    const [register, setRegister] = useState(false)
+    const location = useLocation();
+    
 
   const openPopover = (e) => {
     setPopover(true)
@@ -34,6 +39,10 @@ export default function Header({ page }) {
         localStorage.removeItem("account")
         setIsLoggedIn(false)
         setAccount(null)
+
+        if (location.pathname == "/upload") {
+            window.location.href = "/"
+        }
     }
     
     useEffect(() => {
@@ -44,8 +53,12 @@ export default function Header({ page }) {
             console.log(account)
             setIsLoggedIn(true)
         }
+
+        gsap.from('.header', { duration: 1, y: -50, opacity: 0, ease: 'power3.out' });
+
     }, [])
 
+    
 
   return (
     <div className='header'>

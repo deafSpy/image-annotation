@@ -10,7 +10,7 @@ import "../styles/gallery.css"
 
 import { deleteImageObject, updateImageObject } from "../api/endpoints/image";
 
-const SideGallery = ({handleUpload, images, setImages}) => {
+const SideGallery = ({images, setImages, update}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [account, setAccount] = useState(null);
 
@@ -64,11 +64,11 @@ const SideGallery = ({handleUpload, images, setImages}) => {
 
     return (
     <>
-        {isLoggedIn ? <div>
+        {(isLoggedIn && images.length > 0) ? <div>
             <Grid container direction="column" spacing={2} className="sidegallery-grid">
                 {images.map((image, index) => (
                 <Grid item xs={12} key={index}>
-                        <GalleryCard image={image} handleDelete={handleDelete} />
+                        <GalleryCard image={image} handleDelete={handleDelete} update={update} />
                 </Grid>
                 ))}
             </Grid>
